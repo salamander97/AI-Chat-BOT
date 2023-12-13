@@ -291,6 +291,9 @@ sendButton.addEventListener('click', async () => {
     subtitle.classList.add('hidden');
     subtitle1.classList.add('hidden');
 
+    if(userMessage === 'bạn là ai' || userMessage === 'Bạn là ai' || userMessage === 'Ai tạo ra bạn' || userMessage === 'Bạn là chatgpt mấy' || userMessage === 'Bạn là ChatGPT mấy'){
+      const botResponse = "Tôi là một phiên bản của Chat GPT, một trí tuệ nhân tạo mạnh mẽ. Được cấu hình lại và tạo ra bởi <a href='https://www.facebook.com/sOckbOy97/' target='_blank'>Trung Hiếu</a>"
+    }
     const userMessageContainer = createUserMessageContainer(userMessage);
     // Thêm tin nhắn người dùng vào cuối danh sách
     messageDisplay.appendChild(userMessageContainer);

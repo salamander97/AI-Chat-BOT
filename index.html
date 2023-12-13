@@ -328,12 +328,21 @@ sendButton.addEventListener('click', async () => {
       return;
     }
 
+    
     const aiMessage = response.data.choices[0].message.content;
     const aiMessageContainer = createAiMessageContainer(aiMessage);
+    const typingIndicator = document.getElementById('typing-indicator');
+    if (typingIndicator) {
+      typingIndicator.remove();
+    }
     // Thêm tin nhắn của chatbot vào cuối danh sách
     messageDisplay.appendChild(aiMessageContainer);
     aiMessageContainer.scrollIntoView({ behavior: 'smooth' })
   } catch (error) {
+    const typingIndicator = document.getElementById('typing-indicator');
+    if (typingIndicator) {
+    typingIndicator.remove();
+    }
     console.error('Error:', error);
   }
 });
@@ -373,6 +382,24 @@ function createUserMessageContainer(message) {
   }
 
   return messageContainer;
+}
+    function createTypingIndicator() {
+  const typingIndicatorContainer = document.createElement('div');
+  typingIndicatorContainer.classList.add('ai-message-container');
+  typingIndicatorContainer.id = 'typing-indicator';
+
+  const aiSenderIcon = document.createElement('img');
+  aiSenderIcon.src = './icon/ChatBOT.svg';
+  aiSenderIcon.classList.add('ai-sender-icon');
+  typingIndicatorContainer.appendChild(aiSenderIcon);
+
+  const aiMessageText = document.createElement('div');
+  aiMessageText.classList.add('ai-message-text');
+  aiMessageText.innerText = 'AI đang nhập...';
+  typingIndicatorContainer.appendChild(aiMessageText);
+
+  messageDisplay.appendChild(typingIndicatorContainer);
+  typingIndicatorContainer.scrollIntoView({ behavior: 'smooth' });
 }
     function createAiMessageContainer(message) {
   const aiMessageContainer = document.createElement('div');

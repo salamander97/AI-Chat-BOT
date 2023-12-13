@@ -62,6 +62,10 @@
       font-size: 40px;
       color: #000000;
       font-weight: bold;
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       padding-top: 20px;
     }
 
@@ -69,19 +73,30 @@
       font-size: 40px;
       color: #7a7373;
       font-weight: bold;
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .subtitle {
       font-size: 40px;
       color: #7a7373;
       font-weight: bold;
-      top: 50%;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .subtitle1 {
       font-size: 48px;
       font-weight: bold;
       color: #7a7373;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .footer {
@@ -109,9 +124,9 @@
     }
 
     .chat-input {
-      height: 53px;
+      height: 50px;
       max-height: 200px;
-      width: calc(100% - 50px);
+      width: calc(100% - 50px); /* Giảm chiều rộng của khung nhập vào */
       border: 1px solid #f8f8f7;
       border-radius: 20px;
       padding: 10px 20px;
@@ -122,7 +137,7 @@
 
     .send-button {
       position: absolute;
-      right: 20px;
+      right: 5px;
       top: 50%;
       transform: translateY(-50%);
       background-color: #5644a0;
@@ -135,8 +150,8 @@
     /* Nút gửi*/
     .send-icon {
       fill: rgb(3, 3, 3);
-      width: 15px;
-      height: 15px;
+      width: 25px;
+      height: 25px;
     }
 
     .message {
@@ -213,6 +228,30 @@
       padding: 5px 10px;
       margin-left: 15px;
     }
+    <!--Hiển thị icon loading-->
+    .loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+  .hidden{
+    display: none;
+  }
+
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 /* 
     .message-text,
     .sender-icon {
@@ -241,6 +280,9 @@
     .title,.subtitle,.subtitle1 {
       animation: pulse 2s infinite;}
     .hidden {display: none;}
+    .banner,.title,.subtitle, .subtitle1 {
+    position: fixed;
+}
   </style>
 </head>
 
@@ -264,6 +306,7 @@
       <svg class="send-icon" viewBox="0 0 24 24">
         <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z" />
       </svg>
+      <div class="loader" id="loading-icon"></div>
     </button>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -272,6 +315,7 @@
     const sendButton = document.getElementById('send-button');
     const messageDisplay = document.getElementById('message-display');
     const userInput = document.getElementById('user-input');
+    const loadingIcon = document.getElementById('loading-icon');
     const title = document.querySelector('.title');
     const subtitle = document.querySelector('.subtitle');
     const subtitle1 = document.querySelector('.subtitle1');
@@ -285,6 +329,8 @@ messageContainerDiv.classList.add('message-container');
 messageDisplay.appendChild(messageContainerDiv);
 
 sendButton.addEventListener('click', async () => {
+    sendButton.classList.add('hidden');
+    loadingIcon.classList.remove('hidden');
   const userMessage = userInput.value.trim();
   if (userMessage) {
     title.classList.add('hidden');
@@ -349,6 +395,9 @@ sendButton.addEventListener('click', async () => {
     }
     console.error('Error:', error);
   }
+    loadingIcon.classList.add('hidden');
+    sendButton.classList.remove('hidden');
+
 });
 
 
@@ -454,7 +503,7 @@ function createUserMessageContainer(message) {
       } else {
         aiMessageText.innerHTML += message.charAt(i);
         i++;
-        setTimeout(typeWriter, 30); // Thời gian hiển thị giữa các chữ
+        setTimeout(typeWriter, 10); // Thời gian hiển thị giữa các chữ
       }
     }
   }

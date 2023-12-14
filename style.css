@@ -1,0 +1,335 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f2f0e9;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+pre {
+    background-color: #282c34;
+    /* Thay đổi màu nền này theo ý của bạn */
+}
+
+.wrapper {
+    position: relative;
+    margin-bottom: 20px;
+    /* Để giữ khoảng cá5ch 20px dưới banner */
+}
+
+@media only screen and (max-width: 1366px) {
+    .message-display {
+        width: 100%;
+        border-radius: 20px;
+    }
+}
+
+@media only screen and (max-width: 1284px) {
+    .message-display {
+        width: 100%;
+    }
+}
+
+.message-display {
+    width: 100%;
+    height: calc(100vh - 100px);
+    background-color: #f2f1e9;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding-top: 50px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    margin: auto;
+    border-radius: 20px;
+}
+
+.container {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.banner {
+    text-align: center;
+    font-size: 40px;
+    color: #000000;
+    font-weight: bold;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-top: 0px;
+}
+
+.title {
+    font-size: 40px;
+    color: #7a7373;
+    font-weight: bold;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.subtitle {
+    font-size: 40px;
+    color: #7a7373;
+    font-weight: bold;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.subtitle1 {
+    font-size: 48px;
+    font-weight: bold;
+    color: #7a7373;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.footer {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    font-size: 15px;
+    transform: translateX(-50%);
+    left: 50%;
+}
+
+.chat-container {
+    position: fixed;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    width: calc(100%);
+    max-width: 700px;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.chat-input {
+    height: 50px;
+    max-height: 200px;
+    width: calc(100% - 50px);
+    /* Giảm chiều rộng của khung nhập vào */
+    border: 1px solid #f8f8f7;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.send-button {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #5644a0;
+    border: none;
+    border-radius: 40%;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* Nút gửi*/
+.send-icon {
+    fill: rgb(3, 3, 3);
+    width: 25px;
+    height: 25px;
+}
+
+.message {
+    margin-left: 100px;
+    margin-right: 20px;
+    padding-top: 100px;
+}
+
+.message-container {
+    max-width: 90%;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    /*white-space: Không cho phép xuống dòng */
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    /*margin-bottom: Khoảng cách giữa các tin nhắn*/
+    flex-direction: row;
+}
+
+.ai-message-container {
+    max-width: 90%;
+    word-wrap: break-word;
+    /*break-word: Tự động xuống dòng khi vượt quá chiều rộng*/
+    overflow: hidden;
+    /*overflow: Ẩn phần dư thừa*/
+    text-overflow: ellipsis;
+    /*text-overflow: Hiển thị dấu ... khi vượt quá chiều rộng*/
+    white-space: normal;
+    /*white-space: Không cho phép xuống dòng */
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    flex-direction: row;
+}
+
+.sender-name {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: underline;
+    padding-top: 20px;
+    margin-right: 10px;
+}
+
+.ai-sender-name {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: underline;
+    padding-top: 20px;
+    margin-right: 10px;
+    /* Để tạo khoảng cách giữa tên người gửi và nội dung tin nhắn */
+}
+
+.sender-icon {
+    /*sender-icon: Ảnh người gửi */
+    width: 30px;
+    /*width: Chiều rộng */
+    height: 30px;
+    /*height: Chiều cao */
+    margin-right: 5px;
+    /*margin-right: Khoảng cách với tin nhắn */
+    margin-top: 8px;
+    /*margin-top: Khoảng cách với tin nhắn */
+    margin-left: 10px;
+    /*margin-left: Khoảng cách với tin nhắn */
+}
+
+.ai-sender-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    margin-top: 8px;
+    margin-left: 10px;
+}
+
+.message-text {
+    background-color: #dfd7c8;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-left: 15px;
+}
+
+.ai-message-text {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-left: 15px;
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 
+  .message-text,
+  .sender-icon {
+    position: absolute;
+    top: calc(10% + 20px);
+  }
+
+  .ai-message-text,
+  .ai-sender-icon {
+    position: absolute;
+    top: calc(10% + 60px);
+  } */
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* .banner {animation: fadeInOut 1s infinite;} */
+.title,
+.subtitle,
+.subtitle1 {
+    animation: pulse 2s infinite;
+}
+
+.hidden {
+    display: none;
+}
+
+.title,
+.subtitle,
+.subtitle1 {
+    position: fixed;
+}

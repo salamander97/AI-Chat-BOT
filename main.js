@@ -32,7 +32,7 @@ sendButton.addEventListener('click', async () => {
         userInput.value = '';
     }
 
-    const chatGPTKey = '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';
+    const chatGPTKey = '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';
     const OPEN_AI_ENDPOINT = 'https://api.openai.com/v1/chat/completions';
 
     try {

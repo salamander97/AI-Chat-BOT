@@ -33,27 +33,25 @@ sendButton.addEventListener('click', async () => {
     }
 
     const chatGPTKey = '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';
-    const OPEN_AI_ENDPOINT = 'https://api.openai.com/v1/chat/completions';
+    const OPEN_AI_ENDPOINT = 'https://api.openai.com/v1/completions';
 
     try {
-        const response = await axios.post(
-            `${OPEN_AI_ENDPOINT}`,
-            {
-                model: 'gpt-3.5-turbo-1106',
-                messages: [
-                    { role: 'system', content: 'You are a helpful assistant.' },
-                    { role: 'user', content: userMessage }
-                ],
-                temperature: 0.9,
-                max_tokens: 1500,
-            },
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${chatGPTKey}`,
-                },
-            }
-        );
+const response = await axios.post(
+    `${OPEN_AI_ENDPOINT}`,
+    {
+        model: 'gpt-3.5-turbo-1106',
+        prompt: 'You are a helpful assistant.\n' + userMessage,
+        temperature: 0.9,
+        max_tokens: 1500,
+    },
+    {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${chatGPTKey}`,
+        },
+    }
+);
+
         console.log('API Response:', response.data);
 
         if (!response.data.choices || response.data.choices.length === 0) {
@@ -62,7 +60,7 @@ sendButton.addEventListener('click', async () => {
         }
 
 
-        const aiMessage = response.data.choices[0].message.content;
+        const aiMessage = response.data.choices[0].text;
         const aiMessageContainer = createAiMessageContainer(aiMessage);
         const typingIndicator = document.getElementById('typing-indicator');
         if (typingIndicator) {
